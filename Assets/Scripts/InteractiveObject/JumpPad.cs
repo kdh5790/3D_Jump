@@ -2,7 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpPad : MonoBehaviour
+interface IInteractive
+{
+    IEnumerator RayCheckCoroutine();
+    ObjectInfo GetObjectInfo();
+}
+
+public class JumpPad : MonoBehaviour, IInteractive
 {
     Coroutine rayCheckCorountine;
     [SerializeField] private LayerMask playerLayer;
@@ -10,6 +16,8 @@ public class JumpPad : MonoBehaviour
     private Player player;
     private bool isScaling;
     private bool canJump;
+
+    public ObjectInfo info;
 
     private void Update()
     {
@@ -21,7 +29,7 @@ public class JumpPad : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            rayCheckCorountine = StartCoroutine(StartRayCoroutine());
+            rayCheckCorountine = StartCoroutine(RayCheckCoroutine());
         }
     }
 
@@ -35,7 +43,7 @@ public class JumpPad : MonoBehaviour
         }
     }
 
-    private IEnumerator StartRayCoroutine()
+    public IEnumerator RayCheckCoroutine()
     {
         while (true)
         {
@@ -82,5 +90,10 @@ public class JumpPad : MonoBehaviour
 
         isScaling = false;
         transform.localScale = targetScale;
+    }
+
+    public ObjectInfo GetObjectInfo()
+    {
+        return info;
     }
 }
