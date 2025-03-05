@@ -4,7 +4,6 @@ using UnityEngine;
 
 interface IInteractive
 {
-    IEnumerator RayCheckCoroutine();
     ObjectInfo GetObjectInfo();
 }
 
