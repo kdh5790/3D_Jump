@@ -7,6 +7,14 @@ public class DescriptionUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI interactionDescriptionText;
+
+    private void Start()
+    {
+        nameText.text = string.Empty;
+        descriptionText.text = string.Empty;
+        interactionDescriptionText.text = string.Empty;
+    }
 
     public void SetInfoText(ObjectInfo _info = null)
     {
@@ -20,5 +28,10 @@ public class DescriptionUI : MonoBehaviour
             nameText.text = string.Empty;
             descriptionText.text = string.Empty;
         }
+    }
+
+    public void SetInteractionDescriptionText(string description)
+    {
+        interactionDescriptionText.text = description;
     }
 }

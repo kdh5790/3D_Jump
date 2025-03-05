@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectCheck : MonoBehaviour
@@ -16,6 +17,7 @@ public class ObjectCheck : MonoBehaviour
     void Start()
     {
         rayCamera = Camera.main;
+        descriptionUI = UIManager.Instance.descriptionUI;
         StartCoroutine(ObjectCheckCoroutine());
     }
 

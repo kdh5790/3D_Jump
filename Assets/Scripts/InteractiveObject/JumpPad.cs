@@ -37,6 +37,7 @@ public class JumpPad : MonoBehaviour, IInteractive
     {
         if (other.CompareTag("Player"))
         {
+            UIManager.Instance.descriptionUI.SetInteractionDescriptionText(string.Empty);
             player = null;
             StopCoroutine(rayCheckCorountine);
             rayCheckCorountine = null;
@@ -55,6 +56,8 @@ public class JumpPad : MonoBehaviour, IInteractive
                     player = _player;
                     canJump = true;
 
+                    UIManager.Instance.descriptionUI.SetInteractionDescriptionText("Space키를 눌러 높이 점프 할 수 있습니다.");
+
                     if (!isScaling)
                         StartCoroutine(JumpPadScaleChange(new Vector3(1, 0.1f, 1)));
                 }
@@ -62,7 +65,8 @@ public class JumpPad : MonoBehaviour, IInteractive
             else
             {
                 canJump = false;
-                player = null;  
+                player = null;
+                UIManager.Instance.descriptionUI.SetInteractionDescriptionText(string.Empty);
                 if (!isScaling)
                     StartCoroutine(JumpPadScaleChange(new Vector3(1, 1, 1)));
             }
