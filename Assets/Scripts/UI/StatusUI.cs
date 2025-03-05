@@ -30,5 +30,4 @@ public class StatusUI : MonoBehaviour
     {
         staminaImage.fillAmount = amount;
     }
-
 }
