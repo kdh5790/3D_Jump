@@ -287,8 +287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Space \uBC84\uD2BC\uC744 \uB20C\uB7EC \uB192\uC774 \uC810\uD504 \uD560
-    \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d043077cb21db03439d9e874f7f19942, type: 2}
   m_sharedMaterial: {fileID: -733750763803563837, guid: d043077cb21db03439d9e874f7f19942, type: 2}
