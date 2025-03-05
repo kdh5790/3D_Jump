@@ -28,7 +28,6 @@ public class StatusUI : MonoBehaviour
 
     private void UpdateStaminaUI(float amount)
     {
-        Debug.Log(amount);
         staminaImage.fillAmount = amount;
     }
 
