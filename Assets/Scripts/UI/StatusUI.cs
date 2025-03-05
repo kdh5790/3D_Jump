@@ -1,18 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatusUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Image hpImage;
+    [SerializeField] private Image staminaImage;
+
+    private PlayerStats playerStat;
+
+    private void Start()
     {
-        
+        playerStat = Player.Instance.stats;
+
+        playerStat.healthUIUpdateAction += UpdateHealthUI;
+        playerStat.staminaUIUpdateAction += UpdateStaminaUI;
+
+        hpImage.fillAmount = 1;
+        staminaImage.fillAmount = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateHealthUI(float amount)
     {
-        
+        hpImage.fillAmount = amount;
     }
+
+    private void UpdateStaminaUI(float amount)
+    {
+        Debug.Log(amount);
+        staminaImage.fillAmount = amount;
+    }
+
 }

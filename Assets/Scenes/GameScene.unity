@@ -1604,6 +1604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a722f82f155e045b38f75f8e9667e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpImage: {fileID: 400943333}
+  staminaImage: {fileID: 1747080893}
 --- !u!4 &74849353422762468
 Transform:
   m_ObjectHideFlags: 0

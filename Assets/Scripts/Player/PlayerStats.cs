@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,9 @@ public class PlayerStats : MonoBehaviour
 
     PlayerController playerContoller;
 
+    public Action<float> healthUIUpdateAction;
+    public Action<float> staminaUIUpdateAction;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -34,12 +38,11 @@ public class PlayerStats : MonoBehaviour
             {
                 StopCoroutine(staminaCoroutine);
                 isRecoveringStamina = false;
-                staminaCoroutine = StartCoroutine(DecreaseStamina());
+                staminaCoroutine = null;
             }
+
             if (staminaCoroutine == null)
-            {
                 staminaCoroutine = StartCoroutine(DecreaseStamina());
-            }
         }
         else if (!isRecoveringStamina && currentStamina < maxStamina)
         {
@@ -54,10 +57,12 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator DecreaseStamina()
     {
-        while(currentStamina > 0 && playerContoller.isSprint && playerContoller.moveState == MoveState.Move)
+        while (currentStamina > 0 && playerContoller.isSprint && playerContoller.moveState == MoveState.Move)
         {
             currentStamina -= staminaDecreaseRate * Time.deltaTime;
             currentStamina = Mathf.Max(currentStamina, 0);
+
+            staminaUIUpdateAction(currentStamina / maxStamina);
 
             if (currentStamina <= 0)
             {
@@ -70,13 +75,15 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator RecoverStamina()
     {
-        Debug.Log("Recover");
         yield return new WaitForSeconds(staminaRecoveryTime);
 
-        while(currentStamina < maxStamina)
+        while (currentStamina < maxStamina)
         {
             currentStamina += staminaRecoveryRate * Time.deltaTime;
             currentStamina = Mathf.Min(currentStamina, maxStamina);
+
+            staminaUIUpdateAction(currentStamina / maxStamina);
+
             yield return null;
         }
 
