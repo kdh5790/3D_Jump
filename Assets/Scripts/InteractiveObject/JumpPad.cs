@@ -6,8 +6,16 @@ public class JumpPad : MonoBehaviour
 {
     Coroutine rayCheckCorountine;
     [SerializeField] private LayerMask playerLayer;
+
+    private Player player;
     private bool isScaling;
     private bool canJump;
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && canJump && player != null)
+            player.GetComponent<Rigidbody>().AddForce(Vector2.up * 200f, ForceMode.Impulse);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +29,7 @@ public class JumpPad : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            player = null;
             StopCoroutine(rayCheckCorountine);
             rayCheckCorountine = null;
         }
@@ -33,20 +42,24 @@ public class JumpPad : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, Vector3.up, out hit, 3f, playerLayer))
             {
-                canJump = true;
+                if (hit.transform.TryGetComponent(out Player _player))
+                {
+                    player = _player;
+                    canJump = true;
 
-                if (!isScaling)
-                    StartCoroutine(JumpPadScaleChange(new Vector3(1, 0.1f, 1)));
+                    if (!isScaling)
+                        StartCoroutine(JumpPadScaleChange(new Vector3(1, 0.1f, 1)));
+                }
             }
             else
             {
                 canJump = false;
-
+                player = null;  
                 if (!isScaling)
                     StartCoroutine(JumpPadScaleChange(new Vector3(1, 1, 1)));
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
