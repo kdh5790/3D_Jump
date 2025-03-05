@@ -5,32 +5,81 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private float maxStamina = 100;
     private int currentHealth;
 
-    public int Health
-    {
-        get { return currentHealth; }
-        private set
-        {
-            currentHealth = Mathf.Clamp(value, 0, maxHealth);
-            if (currentHealth <= 0)
-            {
-                // 사망
-            }
-        }
-    }
+    [Header("Stamina")]
+    [SerializeField] private float maxStamina = 100;
+    [SerializeField] private float staminaDecreaseRate = 10f; // 스태미너 감소 배율
+    [SerializeField] private float staminaRecoveryRate = 5f; // 스태미너 회복 배율
+    [SerializeField] private float staminaRecoveryTime = 1f; // 사용 후 회복이 시작되기까지 시간
+    private Coroutine staminaCoroutine;
+    private bool isRecoveringStamina = false;
+    private float currentStamina;
+    public float CurrentStamina { get { return currentStamina; } }
+
+    PlayerController playerContoller;
 
     void Start()
     {
         currentHealth = maxHealth;
+        currentStamina = maxStamina;
+        playerContoller = Player.Instance.controller;
     }
 
     void Update()
     {
-        if(Player.Instance.controller.isSprint && Player.Instance.controller.moveState == MoveState.Move)
+        if (playerContoller.isSprint && playerContoller.moveState == MoveState.Move && currentStamina > 0)
         {
-            maxStamina -= Time.deltaTime;
+            if (isRecoveringStamina)
+            {
+                StopCoroutine(staminaCoroutine);
+                isRecoveringStamina = false;
+                staminaCoroutine = StartCoroutine(DecreaseStamina());
+            }
+            if (staminaCoroutine == null)
+            {
+                staminaCoroutine = StartCoroutine(DecreaseStamina());
+            }
         }
+        else if (!isRecoveringStamina && currentStamina < maxStamina)
+        {
+            if (staminaCoroutine != null)
+            {
+                StopCoroutine(staminaCoroutine);
+            }
+            staminaCoroutine = StartCoroutine(RecoverStamina());
+            isRecoveringStamina = true;
+        }
+    }
+
+    private IEnumerator DecreaseStamina()
+    {
+        while(currentStamina > 0 && playerContoller.isSprint && playerContoller.moveState == MoveState.Move)
+        {
+            currentStamina -= staminaDecreaseRate * Time.deltaTime;
+            currentStamina = Mathf.Max(currentStamina, 0);
+
+            if (currentStamina <= 0)
+            {
+                playerContoller.isSprint = false;
+            }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator RecoverStamina()
+    {
+        Debug.Log("Recover");
+        yield return new WaitForSeconds(staminaRecoveryTime);
+
+        while(currentStamina < maxStamina)
+        {
+            currentStamina += staminaRecoveryRate * Time.deltaTime;
+            currentStamina = Mathf.Min(currentStamina, maxStamina);
+            yield return null;
+        }
+
+        isRecoveringStamina = false;
     }
 }
