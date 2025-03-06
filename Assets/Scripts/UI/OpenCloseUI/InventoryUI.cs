@@ -24,13 +24,26 @@ public class InventoryUI : BaseOpenCloseUI
         SetSlot();
     }
 
+    public override void OpenUI()
+    {
+        base.OpenUI();
+        InitSelectItemInfoUI();
+    }
+
+    public override void CloseUI()
+    {
+        base.CloseUI();
+        InitSelectItemInfoUI();
+    }
+
     public void InitSelectItemInfoUI()
     {
         item = null;
         selectItemNameText.text = string.Empty;
         selectItemCountText.text = string.Empty;
         selectItemDescriptionText.text = string.Empty;
-        selectItemImage.gameObject.SetActive(false);
+        selectItemImage.sprite = null;
+        selectItemImage.color = new Color(1, 1, 1, 0);
     }
 
     public void SetSelectItemInfoUI(InventorySlot slot)
@@ -39,7 +52,7 @@ public class InventoryUI : BaseOpenCloseUI
         selectItemNameText.text = slot.item.ItemName;
         selectItemCountText.text = $"º¸À¯:{slot.count.ToString()}";
         selectItemDescriptionText.text = slot.item.ItemDescription;
-        selectItemImage.gameObject.SetActive(true);
+        selectItemImage.color = Color.white;
         selectItemImage.sprite = slot.itemImage.sprite;
         index = slot.index;
     }
@@ -76,7 +89,6 @@ public class InventoryUI : BaseOpenCloseUI
                 item = _item;
                 slots[i].count++;
                 slots[i].countText.text = slots[i].count.ToString();
-                SetSelectItemInfoUI(slots[i]);
                 return;
             }
         }
@@ -88,7 +100,6 @@ public class InventoryUI : BaseOpenCloseUI
                 slots[i].item = _item;
                 slots[i].count++;
                 slots[i].countText.text = slots[i].count.ToString();
-                SetSelectItemInfoUI(slots[i]);
                 break;
             }
         }

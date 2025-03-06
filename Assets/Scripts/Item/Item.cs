@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseItem : MonoBehaviour, IInteractive
+public class Item : MonoBehaviour, IInteractive
 {
     public ItemInfo itemInfo;
     public ObjectInfo objectInfo;
