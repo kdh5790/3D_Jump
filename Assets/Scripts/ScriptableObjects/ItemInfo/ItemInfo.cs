@@ -4,7 +4,9 @@ public enum PotionType
 {
     None,
     RecoveryHealth,
-    RecoveryStamina
+    RecoveryStamina,
+    InvincibilityPotion,
+    SpeedBoostPotion
 }
 
 [CreateAssetMenu(fileName = "Item Info", menuName = "Item Info")]
