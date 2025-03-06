@@ -17,12 +17,14 @@ public class ItemManager : MonoBehaviour
         switch (info.PotionType)
         {
             case PotionType.None:
-                break;
+                return false;
+
             case PotionType.RecoveryHealth:
-                Debug.Log("Health 회복 포션 사용");
+                Player.Instance.stats.HealHealth(info.Amount);
                 return true;
+
             case PotionType.RecoveryStamina:
-                Debug.Log("Stamina 회복 포션 사용");
+                Player.Instance.stats.HealStamina(info.Amount);
                 return true;
         }
 

@@ -34,15 +34,14 @@ public class PlayerStats : MonoBehaviour
     {
         if (playerContoller.isSprint && playerContoller.moveState == MoveState.Move && currentStamina > 0)
         {
-            if (isRecoveringStamina)
+            if (isRecoveringStamina || staminaCoroutine != null)
             {
                 StopCoroutine(staminaCoroutine);
                 isRecoveringStamina = false;
                 staminaCoroutine = null;
             }
 
-            if (staminaCoroutine == null)
-                staminaCoroutine = StartCoroutine(DecreaseStamina());
+            staminaCoroutine = StartCoroutine(DecreaseStamina());
         }
         else if (!isRecoveringStamina && currentStamina < maxStamina)
         {
@@ -87,6 +86,25 @@ public class PlayerStats : MonoBehaviour
             yield return null;
         }
 
+        isRecoveringStamina = false;
+    }
+
+    public void HealHealth(int amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        healthUIUpdateAction(currentHealth / maxHealth);
+    }
+
+    public void HealStamina(int amount)
+    {
+        currentStamina = Mathf.Min(currentStamina + amount, maxStamina);
+        staminaUIUpdateAction(currentStamina / maxStamina);
+
+        if (staminaCoroutine != null)
+        {
+            StopCoroutine(staminaCoroutine);
+            staminaCoroutine = null;
+        }
         isRecoveringStamina = false;
     }
 }

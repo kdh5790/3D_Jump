@@ -7,10 +7,5 @@ public class RecoveryPotion : BaseItem
     protected override void Update()
     {
         base.Update();
-
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            UIManager.Instance.inventoryUI.OpenUI();
-        }
     }
 }
