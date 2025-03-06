@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a04bd41b625dc4a9c101a773ec9222, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  Name: "\uD68C\uBCF5 \uD3EC\uC158"
-  Description: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD558\uB294 \uD3EC\uC158"
+  Name: "\uCCB4\uB825 \uD3EC\uC158"
+  Description: "\uC0AC\uC6A9 \uC2DC \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."

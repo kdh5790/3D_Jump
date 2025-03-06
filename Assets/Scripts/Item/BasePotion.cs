@@ -15,6 +15,17 @@ public abstract class BasePotion : MonoBehaviour, IInteractive
 
     public abstract void UsePotion();
 
+    protected virtual void FixedUpdate()
+    {
+        if (!canObtain) return;
+
+        if(canObtain && Input.GetKeyDown(KeyCode.E))
+        {
+            // È¹µæ
+            Debug.Log($"{potionInfo.ItemName} È¹µæ");
+        }
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
