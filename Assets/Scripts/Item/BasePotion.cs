@@ -15,11 +15,12 @@ public abstract class BasePotion : MonoBehaviour, IInteractive
 
     public abstract void UsePotion();
 
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
         if (!canObtain) return;
 
-        if(canObtain && Input.GetKeyDown(KeyCode.E))
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             // È¹µæ
             Debug.Log($"{potionInfo.ItemName} È¹µæ");
@@ -28,7 +29,7 @@ public abstract class BasePotion : MonoBehaviour, IInteractive
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             canObtain = true;
             UIManager.Instance.descriptionUI.SetInteractionDescriptionText($"E Å°¸¦ ÀÔ·ÂÇØ {potionInfo.ItemName} À»/¸¦ È¹µæ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
