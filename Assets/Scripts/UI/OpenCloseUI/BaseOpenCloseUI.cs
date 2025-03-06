@@ -16,6 +16,7 @@ public abstract class BaseOpenCloseUI : MonoBehaviour, IOpenCloseUI
     {
         gameObject.SetActive(false);
         Player.Instance.controller.canLook = true;
+        Player.Instance.controller.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -23,6 +24,8 @@ public abstract class BaseOpenCloseUI : MonoBehaviour, IOpenCloseUI
     {
         gameObject.SetActive(true);
         Player.Instance.controller.canLook = false;
+        Player.Instance.controller.canMove = false;
+        Player.Instance.controller.Stop();
         Cursor.lockState = CursorLockMode.None;
     }
 }

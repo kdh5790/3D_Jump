@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
+    private bool isInvicibility = false;
 
     [Header("Stamina")]
     [SerializeField] private float maxStamina = 100;
@@ -89,6 +90,13 @@ public class PlayerStats : MonoBehaviour
         isRecoveringStamina = false;
     }
 
+    public void OnDamaged(int damage)
+    {
+        if(isInvicibility) return;
+
+        currentHealth = (int)MathF.Max(0, currentHealth - damage);
+    }
+
     public void HealHealth(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
@@ -106,5 +114,19 @@ public class PlayerStats : MonoBehaviour
             staminaCoroutine = null;
         }
         isRecoveringStamina = false;
+    }
+
+    public void ApplyInvicibility(float duration)
+    {
+        StartCoroutine(InvicibilityCoroutine(duration));
+    }
+
+    private IEnumerator InvicibilityCoroutine(float duration)
+    {
+        isInvicibility = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isInvicibility = false;
     }
 }

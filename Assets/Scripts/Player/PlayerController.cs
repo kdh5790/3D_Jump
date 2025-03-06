@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
     public float moveSpeed = 3f;
+    public float increasedSpeed = 0f;
     private float jumpPower = 80f;
     private Vector2 movementInput;
     public LayerMask groundLayerMask;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private float camCurXrot;
     private Vector2 mouseDelta;
 
+    public bool canMove = true;
     public bool canLook = true;
     public bool isSprint = false;
 
@@ -73,6 +75,13 @@ public class PlayerController : MonoBehaviour
         rigid.velocity = dir;
     }
 
+    public void Stop()
+    {
+        moveState = MoveState.Idle;
+        movementInput = Vector2.zero;
+        isSprint = false;
+    }
+
     void CameraLook()
     {
         camCurXrot += mouseDelta.y * lookSensitivity;
@@ -85,18 +94,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && canMove)
         {
             movementInput = context.ReadValue<Vector2>();
 
             if (movementInput.y == 0 && (movementInput.x > 0f || movementInput.x < 0f)) // 좌우 이동
-                moveSpeed = 3f;
+                moveSpeed = 3f + increasedSpeed;
 
             else if (movementInput.y < 0) // 뒤로 이동
-                moveSpeed = 4f;
+                moveSpeed = 4f + increasedSpeed;
 
             else // 앞으로 이동
-                moveSpeed = 5f;
+                moveSpeed = 5f + increasedSpeed;
 
             if (isSprint)
                 moveSpeed += 5f;
@@ -105,9 +114,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            moveState = MoveState.Idle;
-            movementInput = Vector2.zero;
-            isSprint = false;
+            Stop();
         }
     }
 
@@ -115,8 +122,16 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && moveState == MoveState.Move)
         {
-            moveSpeed += 5f;
-            isSprint = !isSprint;
+            if (!isSprint)
+            {
+                moveSpeed += 5f;
+                isSprint = true;
+            }
+            else
+            {
+                moveSpeed -= 5f;
+                isSprint = false;
+            }
         }
     }
 
@@ -141,5 +156,19 @@ public class PlayerController : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    public void ApplySpeedBoost(float duration)
+    {
+        StartCoroutine(SpeedBoostCoroutine(duration));
+    }
+
+    private IEnumerator SpeedBoostCoroutine(float duration)
+    {
+        increasedSpeed = 3f;
+
+        yield return new WaitForSeconds(duration);
+
+        increasedSpeed = 0f;
     }
 }
