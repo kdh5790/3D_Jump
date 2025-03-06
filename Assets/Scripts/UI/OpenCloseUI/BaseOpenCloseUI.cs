@@ -13,6 +13,8 @@ public abstract class BaseOpenCloseUI : MonoBehaviour, IOpenCloseUI
     public virtual void CloseUI()
     {
         gameObject.SetActive(false);
+        Player.Instance.controller.canLook = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public virtual void OpenUI()
