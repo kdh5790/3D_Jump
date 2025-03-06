@@ -15,4 +15,9 @@ public class UIManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
+
+    private void Start()
+    {
+        inventoryUI.Init();
+    }
 }

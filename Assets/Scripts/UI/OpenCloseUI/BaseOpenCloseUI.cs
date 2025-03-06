@@ -10,6 +10,8 @@ public interface IOpenCloseUI
 
 public abstract class BaseOpenCloseUI : MonoBehaviour, IOpenCloseUI
 {
+    public abstract void Init();
+
     public virtual void CloseUI()
     {
         gameObject.SetActive(false);

@@ -9,9 +9,9 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
     public ItemInfo item;
     public Image itemImage;
+    public int index;
     public int count;
     public TextMeshProUGUI countText;
-    public IUsable usableItem;
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -2,12 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IUsable
-{
-    void UseItem();
-}
-
-public abstract class BaseItem : MonoBehaviour, IInteractive, IUsable
+public class BaseItem : MonoBehaviour, IInteractive
 {
     public ItemInfo itemInfo;
     public ObjectInfo objectInfo;
@@ -18,8 +13,6 @@ public abstract class BaseItem : MonoBehaviour, IInteractive, IUsable
         return objectInfo;
     }
 
-    public abstract void UseItem();
-
     protected virtual void Update()
     {
         if (!canObtain) return;
@@ -27,8 +20,8 @@ public abstract class BaseItem : MonoBehaviour, IInteractive, IUsable
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // È¹µæ
-            Debug.Log($"{itemInfo.ItemName} È¹µæ");
+            UIManager.Instance.inventoryUI.AddItem(itemInfo);
+            UIManager.Instance.descriptionUI.SetInteractionDescriptionText(string.Empty);
         }
     }
 

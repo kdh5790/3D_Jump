@@ -13,9 +13,4 @@ public class RecoveryPotion : BaseItem
             UIManager.Instance.inventoryUI.OpenUI();
         }
     }
-
-    public override void UseItem()
-    {
-       
-    }
 }
