@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseItem : MonoBehaviour, IInteractive
+public interface IUsable
+{
+    void UseItem();
+}
+
+public abstract class BaseItem : MonoBehaviour, IInteractive, IUsable
 {
     public ItemInfo itemInfo;
     public ObjectInfo objectInfo;
