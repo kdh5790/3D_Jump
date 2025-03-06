@@ -386,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 583848563}
+  index: 0
   count: 0
   countText: {fileID: 1401333793}
 --- !u!114 &177117025
@@ -635,6 +636,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314879621}
   m_CullTransparentMesh: 1
+--- !u!1 &315802587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 315802589}
+  - component: {fileID: 315802588}
+  m_Layer: 0
+  m_Name: ItemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &315802588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315802587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5967fdb46040dd34bae99501462b9cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &315802589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315802587}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &318042255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 1399914412}
+  index: 0
   count: 0
   countText: {fileID: 1863008490}
 --- !u!64 &555508611
@@ -2024,6 +2070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 183780319}
+  index: 0
   count: 0
   countText: {fileID: 1579545543}
 --- !u!114 &969913863
@@ -2418,6 +2465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 1105108884}
+  index: 0
   count: 0
   countText: {fileID: 907164610}
 --- !u!114 &1061292481
@@ -2700,6 +2748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 1397073133}
+  index: 0
   count: 0
   countText: {fileID: 1295470987}
 --- !u!114 &1130710373
@@ -4655,6 +4704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 1558813484}
+  index: 0
   count: 0
   countText: {fileID: 1802412102}
 --- !u!114 &1747170349
@@ -4883,6 +4933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 672526358}
+  index: 0
   count: 0
   countText: {fileID: 1312124831}
 --- !u!114 &1812914240
@@ -5261,6 +5312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemImage: {fileID: 2003329737}
+  index: 0
   count: 0
   countText: {fileID: 314879623}
 --- !u!114 &1895479665
@@ -13760,3 +13812,4 @@ SceneRoots:
   - {fileID: 7722797103861478945}
   - {fileID: 360914589}
   - {fileID: 1528391574}
+  - {fileID: 315802589}

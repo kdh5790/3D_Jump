@@ -41,6 +41,14 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            UIManager.Instance.inventoryUI.OpenUI();
+        }
+    }
+
     void FixedUpdate()
     {
         Move();

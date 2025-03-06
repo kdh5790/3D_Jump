@@ -17,11 +17,19 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         if (item != null)
         {
-            UIManager.Instance.inventoryUI.SetDescription(this);
+            UIManager.Instance.inventoryUI.SetSelectItemInfoUI(this);
         }
         else
         {
             Debug.Log("아이템이 존재하지 않습니다.");
         }
+    }
+
+    public void InitSlot()
+    {
+        item = null;
+        itemImage.gameObject.SetActive(false);
+        count = 0;
+        countText.text = string.Empty;
     }
 }

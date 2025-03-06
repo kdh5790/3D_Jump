@@ -24,12 +24,22 @@ public class InventoryUI : BaseOpenCloseUI
         SetSlot();
     }
 
-    public void SetDescription(InventorySlot slot)
+    public void InitSelectItemInfoUI()
+    {
+        item = null;
+        selectItemNameText.text = string.Empty;
+        selectItemCountText.text = string.Empty;
+        selectItemDescriptionText.text = string.Empty;
+        selectItemImage.gameObject.SetActive(false);
+    }
+
+    public void SetSelectItemInfoUI(InventorySlot slot)
     {
         item = slot.item;
         selectItemNameText.text = slot.item.ItemName;
         selectItemCountText.text = $"보유:{slot.count.ToString()}";
         selectItemDescriptionText.text = slot.item.ItemDescription;
+        selectItemImage.gameObject.SetActive(true);
         selectItemImage.sprite = slot.itemImage.sprite;
         index = slot.index;
     }
@@ -63,9 +73,10 @@ public class InventoryUI : BaseOpenCloseUI
         {
             if (slots[i].item == _item)
             {
+                item = _item;
                 slots[i].count++;
                 slots[i].countText.text = slots[i].count.ToString();
-                SetDescription(slots[i]);
+                SetSelectItemInfoUI(slots[i]);
                 return;
             }
         }
@@ -77,7 +88,7 @@ public class InventoryUI : BaseOpenCloseUI
                 slots[i].item = _item;
                 slots[i].count++;
                 slots[i].countText.text = slots[i].count.ToString();
-                SetDescription(slots[i]);
+                SetSelectItemInfoUI(slots[i]);
                 break;
             }
         }
@@ -90,10 +101,13 @@ public class InventoryUI : BaseOpenCloseUI
         if(item != null && ItemManager.Instance.UseItem(item))
         {
             slots[index].count--;
+            slots[index].countText.text = slots[index].count.ToString();
+            selectItemCountText.text = $"보유:{slots[index].count.ToString()}";
 
             if (slots[index].count <= 0)
             {
-
+                slots[index].InitSlot();
+                InitSelectItemInfoUI();
             }
         }
     }
