@@ -1058,7 +1058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 896
   descriptionUI: {fileID: 768685983}
 --- !u!1 &1084424617
 GameObject:
@@ -13700,7 +13700,7 @@ GameObject:
   - component: {fileID: 2472037437337352613}
   - component: {fileID: 2472037437337352614}
   - component: {fileID: 2472037437337352615}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: HealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13718,7 +13718,7 @@ GameObject:
   - component: {fileID: 2472037437628138013}
   - component: {fileID: 2377666375322479107}
   - component: {fileID: 2342637598346865395}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: StarsParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13737,7 +13737,7 @@ GameObject:
   - component: {fileID: 2465008703674972399}
   - component: {fileID: 2455010925286146945}
   - component: {fileID: 2527019722700895273}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: bottle_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13755,7 +13755,7 @@ GameObject:
   - component: {fileID: 2472037437383167875}
   - component: {fileID: 2377666374951670009}
   - component: {fileID: 2342637596929850313}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GlowParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13771,7 +13771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2472037434497724435}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13830,7 +13830,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.49, z: 0.19}
+  m_Size: {x: 1.01, y: 0.49, z: 1.29}
   m_Center: {x: 0, y: 1.07, z: 0}
 --- !u!114 &2472037437337352615
 MonoBehaviour:
@@ -27224,7 +27224,7 @@ GameObject:
   - component: {fileID: 7167573250678734396}
   - component: {fileID: 7159842508883156022}
   - component: {fileID: 7087797967740654640}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: bottle_green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27242,7 +27242,7 @@ GameObject:
   - component: {fileID: 7134648821209089348}
   - component: {fileID: 7137894459590083355}
   - component: {fileID: 7137894459590083356}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: StaminaPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27268,7 +27268,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4, y: 0.49, z: 0.19}
+  m_Size: {x: 1.01, y: 0.49, z: 1.29}
   m_Center: {x: 0, y: 1.07, z: 0}
 --- !u!114 &7137894459590083356
 MonoBehaviour:
@@ -27293,7 +27293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7134648819982337674}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27311,7 +27311,7 @@ GameObject:
   - component: {fileID: 7134648823860550692}
   - component: {fileID: 7039697165143396646}
   - component: {fileID: 7048016611495820638}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: StarsParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27329,7 +27329,7 @@ GameObject:
   - component: {fileID: 7134648823310538956}
   - component: {fileID: 7039697168206894676}
   - component: {fileID: 7048016612047270034}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GlowParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

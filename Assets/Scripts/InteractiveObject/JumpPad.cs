@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IInteractive
+public interface IInteractive
 {
     ObjectInfo GetObjectInfo();
 }
@@ -55,7 +55,7 @@ public class JumpPad : MonoBehaviour, IInteractive
                     player = _player;
                     canJump = true;
 
-                    UIManager.Instance.descriptionUI.SetInteractionDescriptionText("Space키를 눌러 높이 점프 할 수 있습니다.");
+                    UIManager.Instance.descriptionUI.SetInteractionDescriptionText("Space키를 입력해 높이 점프 할 수 있습니다.");
 
                     if (!isScaling)
                         StartCoroutine(JumpPadScaleChange(new Vector3(1, 0.1f, 1)));
