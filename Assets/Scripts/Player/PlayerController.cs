@@ -104,8 +104,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && moveState == MoveState.Move)
         {
+            moveSpeed += 5f;
             isSprint = !isSprint;
         }
     }
