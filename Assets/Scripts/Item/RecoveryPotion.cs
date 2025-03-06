@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecoveryPotion : BasePotion
+public class RecoveryPotion : BaseItem
 {
     protected override void Update()
     {
         base.Update();
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            UIManager.Instance.inventoryUI.OpenUI();
+        }
     }
 
-    public override void UsePotion()
+    public override void UseItem()
     {
        
     }

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: StaminaPotion
   m_EditorClassIdentifier: 
   ItemName: "\uC2A4\uD0DC\uBBF8\uB108 \uD3EC\uC158"
+  ItemDescription: "\uC0AC\uC6A9 \uC2DC \uC2A4\uD0DC\uBBF8\uB108\uB97C \uBAA8\uB450
+    \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   PotionType: 2
   ItemSprite: {fileID: 21300000, guid: 1452f7953e6bf964690e6369c16ea3ed, type: 3}
   Amount: 100

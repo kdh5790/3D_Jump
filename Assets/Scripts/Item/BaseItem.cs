@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BasePotion : MonoBehaviour, IInteractive
+public abstract class BaseItem : MonoBehaviour, IInteractive
 {
-    public ItemInfo potionInfo;
+    public ItemInfo itemInfo;
     public ObjectInfo objectInfo;
     private bool canObtain;
 
@@ -13,7 +13,7 @@ public abstract class BasePotion : MonoBehaviour, IInteractive
         return objectInfo;
     }
 
-    public abstract void UsePotion();
+    public abstract void UseItem();
 
     protected virtual void Update()
     {
@@ -23,7 +23,7 @@ public abstract class BasePotion : MonoBehaviour, IInteractive
         if (Input.GetKeyDown(KeyCode.E))
         {
             // È¹µæ
-            Debug.Log($"{potionInfo.ItemName} È¹µæ");
+            Debug.Log($"{itemInfo.ItemName} È¹µæ");
         }
     }
 
@@ -32,7 +32,7 @@ public abstract class BasePotion : MonoBehaviour, IInteractive
         if (other.CompareTag("Player"))
         {
             canObtain = true;
-            UIManager.Instance.descriptionUI.SetInteractionDescriptionText($"E Å°¸¦ ÀÔ·ÂÇØ {potionInfo.ItemName} À»/¸¦ È¹µæ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+            UIManager.Instance.descriptionUI.SetInteractionDescriptionText($"E Å°¸¦ ÀÔ·ÂÇØ {itemInfo.ItemName} À»/¸¦ È¹µæ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
         }
     }
 

@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook)
+            CameraLook();
 
         anim.SetFloat("Horizontal", movementInput.x, 0.2f, Time.deltaTime);
         anim.SetFloat("Vertical", movementInput.y, 0.2f, Time.deltaTime);

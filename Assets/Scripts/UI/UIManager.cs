@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 
     public StatusUI statusUI;
     public DescriptionUI descriptionUI;
+    public InventoryUI inventoryUI;
 
     private void Awake()
     {
