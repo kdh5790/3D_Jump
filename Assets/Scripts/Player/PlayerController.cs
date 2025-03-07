@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private bool canHang = false;
     private bool canClimb = false;
     private Coroutine climbCoroutine;
+    private Coroutine climbCheckCoroutine;
     private Coroutine canHangCheckCoroutine;
 
 
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && moveState == MoveState.Move)
+        if (context.phase == InputActionPhase.Started && moveState == MoveState.Move && !isHanging)
         {
             if (!isSprint)
             {
@@ -171,6 +172,18 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started && canHang)
         {
             HangCharacter();
+        }
+    }
+
+    public void OnClimb(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started && canClimb)
+        {
+            if (climbCoroutine == null)
+                climbCoroutine = StartCoroutine(ClimbToPosition(hangRayPivot.transform.position + transform.up));
+
+            StopCoroutine(CanHangClimbCheck());
+            climbCheckCoroutine = null;
         }
     }
 
@@ -211,12 +224,11 @@ public class PlayerController : MonoBehaviour
         rigid.useGravity = false;
         isHanging = true;
         anim.SetBool("IsHanging", isHanging);
-        StartCoroutine(CanHangClimbCheck());
+StartCoroutine(CanHangClimbCheck());
     }
 
     private IEnumerator CanHangCheck()
     {
-        float waitTime = 0.1f;
         float distance = 0.7f;
 
         while (!IsGrounded())
@@ -233,11 +245,12 @@ public class PlayerController : MonoBehaviour
                 isHanging = false;
                 anim.SetBool("IsHanging", isHanging);
             }
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForFixedUpdate();
         }
 
+        canHang = false;
+
         canHangCheckCoroutine = null;
-        yield break;
     }
 
     private IEnumerator CanHangClimbCheck()
@@ -247,17 +260,8 @@ public class PlayerController : MonoBehaviour
         while (isHanging)
         {
             Debug.DrawRay(hangRayPivot.transform.position + (Vector3.up * 1.5f), transform.forward, Color.red, 1f);
-            if (Physics.Raycast(hangRayPivot.transform.position + (Vector3.up * 1.5f), transform.forward, 1f, hangLayer))
-            {
-                Debug.Log("아직 벽 있음");
-            }
-            else
-            {
+            if (!Physics.Raycast(hangRayPivot.transform.position + (Vector3.up * 1.5f), transform.forward, 1f, hangLayer) && !canClimb)
                 canClimb = true;
-                if (climbCoroutine == null)
-                    climbCoroutine = StartCoroutine(ClimbToPosition(hangRayPivot.transform.position + transform.up));
-                Debug.Log("벽 없음");
-            }
 
             yield return new WaitForSeconds(waitTime);
         }
@@ -268,10 +272,10 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ClimbToPosition(Vector3 targetPosition)
     {
+        canClimb = false;
         canMove = false;
         rigid.useGravity = false;
 
-        Debug.Log("aaa");
         anim.SetTrigger("Climb");
 
         float duration = 0.5f;
@@ -303,9 +307,14 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<CapsuleCollider>().isTrigger = false;
         rigid.useGravity = true;
-        isHanging = false;
+        anim.ResetTrigger("Climb");
         anim.SetBool("IsHanging", false);
+        canHang = false;
+        isHanging = false;
         canMove = true;
         climbCoroutine = null;
+        climbCheckCoroutine = null;
+        canClimb = false;
+        Debug.Log($"{climbCoroutine == null} ???????");
     }
 }
