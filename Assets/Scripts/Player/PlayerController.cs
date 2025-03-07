@@ -98,13 +98,13 @@ public class PlayerController : MonoBehaviour
         {
             movementInput = context.ReadValue<Vector2>();
 
-            if (movementInput.y == 0 && (movementInput.x > 0f || movementInput.x < 0f)) // ÁÂ¿ì ÀÌµ¿
+            if (movementInput.y == 0 && (movementInput.x > 0f || movementInput.x < 0f)) // ì¢Œìš° ì´ë™
                 moveSpeed = 3f + increasedSpeed;
 
-            else if (movementInput.y < 0) // µÚ·Î ÀÌµ¿
+            else if (movementInput.y < 0) // ë’¤ë¡œ ì´ë™
                 moveSpeed = 4f + increasedSpeed;
 
-            else // ¾ÕÀ¸·Î ÀÌµ¿
+            else // ì•žìœ¼ë¡œ ì´ë™
                 moveSpeed = 5f + increasedSpeed;
 
             if (isSprint)

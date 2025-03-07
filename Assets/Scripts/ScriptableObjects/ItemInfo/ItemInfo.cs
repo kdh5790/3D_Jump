@@ -12,10 +12,10 @@ public enum PotionType
 [CreateAssetMenu(fileName = "Item Info", menuName = "Item Info")]
 public class ItemInfo : ScriptableObject
 {
-    public string ItemName; // ¾ÆÀÌÅÛ ÀÌ¸§
-    public string ItemDescription; // ¾ÆÀÌÅÛ ¼³¸í
-    public PotionType PotionType; // Æ÷¼Ç Å¸ÀÔ
-    public Sprite ItemSprite; // ¾ÆÀÌÅÛ ½ºÇÁ¶óÀÌÆ®
-    public int Amount; // È¸º¹·®
-    public float DurationTime; // È¿°ú°¡ ÀÖ´Ù¸é Áö¼Ó½Ã°£
+    public string ItemName; // ì•„ì´í…œ ì´ë¦„
+    public string ItemDescription; // ì•„ì´í…œ ì„¤ëª…
+    public PotionType PotionType; // í¬ì…˜ íƒ€ì…
+    public Sprite ItemSprite; // ì•„ì´í…œ ìŠ¤í”„ë¼ì´íŠ¸
+    public int Amount; // íšŒë³µëŸ‰
+    public float DurationTime; // íš¨ê³¼ê°€ ìˆë‹¤ë©´ ì§€ì†ì‹œê°„
 }

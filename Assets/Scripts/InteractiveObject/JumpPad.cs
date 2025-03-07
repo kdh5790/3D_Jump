@@ -55,7 +55,7 @@ public class JumpPad : MonoBehaviour, IInteractive
                     player = _player;
                     canJump = true;
 
-                    UIManager.Instance.descriptionUI.SetInteractionDescriptionText("SpaceÅ°¸¦ ÀÔ·ÂÇØ ³ôÀÌ Á¡ÇÁ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+                    UIManager.Instance.descriptionUI.SetInteractionDescriptionText("Spaceí‚¤ë¥¼ ì…ë ¥í•´ ë†’ì´ ì í”„ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 
                     if (!isScaling)
                         StartCoroutine(JumpPadScaleChange(new Vector3(1, 0.1f, 1)));

@@ -50,7 +50,7 @@ public class InventoryUI : BaseOpenCloseUI
     {
         item = slot.item;
         selectItemNameText.text = slot.item.ItemName;
-        selectItemCountText.text = $"º¸À¯:{slot.count.ToString()}";
+        selectItemCountText.text = $"ë³´ìœ :{slot.count.ToString()}";
         selectItemDescriptionText.text = slot.item.ItemDescription;
         selectItemImage.color = Color.white;
         selectItemImage.sprite = slot.itemImage.sprite;
@@ -113,7 +113,7 @@ public class InventoryUI : BaseOpenCloseUI
         {
             slots[index].count--;
             slots[index].countText.text = slots[index].count.ToString();
-            selectItemCountText.text = $"º¸À¯:{slots[index].count.ToString()}";
+            selectItemCountText.text = $"ë³´ìœ :{slots[index].count.ToString()}";
 
             if (slots[index].count <= 0)
             {

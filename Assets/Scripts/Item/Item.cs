@@ -30,7 +30,7 @@ public class Item : MonoBehaviour, IInteractive
         if (other.CompareTag("Player"))
         {
             canObtain = true;
-            UIManager.Instance.descriptionUI.SetInteractionDescriptionText($"E Å°¸¦ ÀÔ·ÂÇØ {itemInfo.ItemName} À»/¸¦ È¹µæ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+            UIManager.Instance.descriptionUI.SetInteractionDescriptionText($"E í‚¤ë¥¼ ì…ë ¥í•´ {itemInfo.ItemName} ì„/ë¥¼ íšë“ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
         }
     }
 

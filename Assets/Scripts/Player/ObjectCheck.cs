@@ -24,7 +24,7 @@ public class ObjectCheck : MonoBehaviour
 
     private IEnumerator ObjectCheckCoroutine()
     {
-        // ÇÃ·¹ÀÌ¾î »ç¸Á ÆÇÁ¤ ½Ã ¸ØÃßµµ·Ï ³ªÁß¿¡ º¯°æ
+        // í”Œë ˆì´ì–´ ì‚¬ë§ íŒì • ì‹œ ë©ˆì¶”ë„ë¡ ë‚˜ì¤‘ì— ë³€ê²½
         while (true)
         {
             ray = rayCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));

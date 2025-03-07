@@ -21,7 +21,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            Debug.Log("¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.Log("ì•„ì´í…œì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
     }
 

@@ -11,9 +11,9 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Stamina")]
     [SerializeField] private float maxStamina = 100;
-    [SerializeField] private float staminaDecreaseRate = 10f; // ½ºÅÂ¹Ì³Ê °¨¼Ò ¹èÀ²
-    [SerializeField] private float staminaRecoveryRate = 5f; // ½ºÅÂ¹Ì³Ê È¸º¹ ¹èÀ²
-    [SerializeField] private float staminaRecoveryTime = 1f; // »ç¿ë ÈÄ È¸º¹ÀÌ ½ÃÀÛµÇ±â±îÁö ½Ã°£
+    [SerializeField] private float staminaDecreaseRate = 10f; // ìŠ¤íƒœë¯¸ë„ˆ ê°ì†Œ ë°°ìœ¨
+    [SerializeField] private float staminaRecoveryRate = 5f; // ìŠ¤íƒœë¯¸ë„ˆ íšŒë³µ ë°°ìœ¨
+    [SerializeField] private float staminaRecoveryTime = 1f; // ì‚¬ìš© í›„ íšŒë³µì´ ì‹œì‘ë˜ê¸°ê¹Œì§€ ì‹œê°„
     private Coroutine staminaCoroutine;
     private bool isRecoveringStamina = false;
     private float currentStamina;
