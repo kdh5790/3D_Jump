@@ -27,28 +27,33 @@ public class PlayerController : MonoBehaviour
     private float camCurXrot;
     private Vector2 mouseDelta;
 
+    [Header("Hanging")]
+    [SerializeField] private GameObject hangRayPivot; // 매달릴 벽을 체크할 레이의 위치 피벗
+    [SerializeField] private LayerMask hangLayer;
+    private bool isHanging = false;
+    private bool canHang = false;
+    private bool canClimb = false;
+    private Coroutine climbCoroutine;
+    private Coroutine canHangCheckCoroutine;
+
+
+    [Header("State")]
     public bool canMove = true;
     public bool canLook = true;
     public bool isSprint = false;
+    private bool isGrounded = true;
 
     private Rigidbody rigid;
     private Animator anim;
 
     public MoveState moveState;
 
+
     void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            UIManager.Instance.inventoryUI.OpenUI();
-        }
     }
 
     void FixedUpdate()
@@ -63,14 +68,22 @@ public class PlayerController : MonoBehaviour
 
         anim.SetFloat("Horizontal", movementInput.x, 0.2f, Time.deltaTime);
         anim.SetFloat("Vertical", movementInput.y, 0.2f, Time.deltaTime);
-        anim.SetBool("IsGrounded", IsGrounded());
+
+        isGrounded = IsGrounded();
+        anim.SetBool("IsGrounded", isGrounded);
+
+        if (!isGrounded && canHangCheckCoroutine == null)
+            canHangCheckCoroutine = StartCoroutine(CanHangCheck());
     }
 
     void Move()
     {
-        Vector3 dir = transform.forward * movementInput.y + transform.right * movementInput.x;
+        Vector3 dir = ((isHanging ? transform.up : transform.forward) * movementInput.y) + (transform.right * movementInput.x);
         dir *= moveSpeed;
-        dir.y = rigid.velocity.y;
+        if (!isHanging)
+            dir.y = rigid.velocity.y;
+        else
+            dir.x = 0f;
 
         rigid.velocity = dir;
     }
@@ -87,9 +100,14 @@ public class PlayerController : MonoBehaviour
         camCurXrot += mouseDelta.y * lookSensitivity;
         camCurXrot = Mathf.Clamp(camCurXrot, minXLook, maxXLook);
 
-        cameraContainer.localEulerAngles = new Vector3(-camCurXrot, 0, 0);
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        if (!isHanging)
+        {
+            cameraContainer.localEulerAngles = new Vector3(-camCurXrot, 0, 0);
+            transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        }
+        else
+            cameraContainer.localEulerAngles += new Vector3(-camCurXrot - cameraContainer.localEulerAngles.x, mouseDelta.x * lookSensitivity, 0);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -148,6 +166,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnHang(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started && canHang)
+        {
+            HangCharacter();
+        }
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            UIManager.Instance.inventoryUI.OpenUI();
+        }
+    }
+
     bool IsGrounded()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
@@ -170,5 +204,108 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         increasedSpeed = 0f;
+    }
+
+    private void HangCharacter()
+    {
+        rigid.useGravity = false;
+        isHanging = true;
+        anim.SetBool("IsHanging", isHanging);
+        StartCoroutine(CanHangClimbCheck());
+    }
+
+    private IEnumerator CanHangCheck()
+    {
+        float waitTime = 0.1f;
+        float distance = 0.7f;
+
+        while (!IsGrounded())
+        {
+            Debug.DrawRay(hangRayPivot.transform.position, transform.forward, Color.red, distance);
+            if (Physics.Raycast(hangRayPivot.transform.position, transform.forward, distance, hangLayer))
+            {
+                canHang = true;
+            }
+            else if (Physics.Raycast(hangRayPivot.transform.position, transform.forward, distance, hangLayer) == false && isHanging)
+            {
+                canHang = false;
+                rigid.useGravity = true;
+                isHanging = false;
+                anim.SetBool("IsHanging", isHanging);
+            }
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        canHangCheckCoroutine = null;
+        yield break;
+    }
+
+    private IEnumerator CanHangClimbCheck()
+    {
+        float waitTime = 0.1f;
+
+        while (isHanging)
+        {
+            Debug.DrawRay(hangRayPivot.transform.position + (Vector3.up * 1.5f), transform.forward, Color.red, 1f);
+            if (Physics.Raycast(hangRayPivot.transform.position + (Vector3.up * 1.5f), transform.forward, 1f, hangLayer))
+            {
+                Debug.Log("아직 벽 있음");
+            }
+            else
+            {
+                canClimb = true;
+                if (climbCoroutine == null)
+                    climbCoroutine = StartCoroutine(ClimbToPosition(hangRayPivot.transform.position + transform.up));
+                Debug.Log("벽 없음");
+            }
+
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        canHangCheckCoroutine = null;
+        yield break;
+    }
+
+    private IEnumerator ClimbToPosition(Vector3 targetPosition)
+    {
+        canMove = false;
+        rigid.useGravity = false;
+
+        Debug.Log("aaa");
+        anim.SetTrigger("Climb");
+
+        float duration = 0.5f;
+        float elapsedTime = 0f;
+
+        Vector3 startPosition = transform.position;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+
+        startPosition = transform.position;
+        targetPosition = transform.position + transform.forward;
+        GetComponent<CapsuleCollider>().isTrigger = true;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+
+        GetComponent<CapsuleCollider>().isTrigger = false;
+        rigid.useGravity = true;
+        isHanging = false;
+        anim.SetBool("IsHanging", false);
+        canMove = true;
+        climbCoroutine = null;
     }
 }
