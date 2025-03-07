@@ -63,6 +63,26 @@ public class Lever : MonoBehaviour, IInteractive
         leverHandle.localRotation = Quaternion.Euler(lastRot);
     }
 
+    public IEnumerator InitInteractState()
+    {
+        float elapsedTime = 0f;
+        float duration = 1f;
+
+        while (elapsedTime < duration)
+        {
+            Vector3 currentRot = Vector3.Lerp(lastRot, firstRot, elapsedTime / duration);
+
+            leverHandle.localRotation = Quaternion.Euler(currentRot);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        leverHandle.localRotation = Quaternion.Euler(firstRot);
+
+        isLeverAction = false;
+    }
+
     public ObjectInfo GetObjectInfo()
     {
         return info;

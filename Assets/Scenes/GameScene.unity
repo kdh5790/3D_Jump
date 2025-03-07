@@ -1985,6 +1985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 23, z: 45}
+  lever: {fileID: 2840951880914964792}
 --- !u!1 &907164608
 GameObject:
   m_ObjectHideFlags: 0
@@ -8771,6 +8772,7 @@ MonoBehaviour:
   leverHandle: {fileID: 8730560105488771836}
   info: {fileID: 11400000, guid: 4c49c3b44aa62e949a5487e2ebc096b4, type: 2}
   canInteract: 0
+  isLeverAction: 0
 --- !u!1 &2898527872137889978
 GameObject:
   m_ObjectHideFlags: 0

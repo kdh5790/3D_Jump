@@ -5,12 +5,18 @@ using UnityEngine;
 public interface ILeverActionable
 {
     void StartLeverAction();
+    void EndLeverAction();
+
+    Lever Lever { get; }
 }
 
 public class MovingPlatform : MonoBehaviour, ILeverActionable
 {
-    [SerializeField] Vector3 startPos;
-    [SerializeField] Vector3 endPos;
+    [SerializeField] private Vector3 startPos;
+    [SerializeField] private Vector3 endPos;
+
+    [SerializeField] private Lever lever;
+    public Lever Lever => lever;
 
     private void Start()
     {
@@ -20,6 +26,11 @@ public class MovingPlatform : MonoBehaviour, ILeverActionable
     public void StartLeverAction()
     {
         StartCoroutine(MoveToTargetPos());
+    }
+
+    public void EndLeverAction()
+    {
+        StartCoroutine(lever.InitInteractState());
     }
 
     private IEnumerator MoveToTargetPos()
@@ -38,5 +49,7 @@ public class MovingPlatform : MonoBehaviour, ILeverActionable
         transform.position = target;
 
         Player.Instance.transform.SetParent(null);
+
+        EndLeverAction();
     }
 }
