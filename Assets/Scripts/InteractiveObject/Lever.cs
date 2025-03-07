@@ -6,17 +6,26 @@ public class Lever : MonoBehaviour, IInteractive
 {
     [SerializeField] private Transform leverHandle;
     [SerializeField] private ObjectInfo info;
-
+    
+    private ILeverActionable leverActionObject;
     private Vector3 firstRot = new Vector3(-40f, 0, 0);
     private Vector3 lastRot = new Vector3(90f, 0, 0);
 
     public bool canInteract;
+    public bool isLeverAction;
+
+    private void Start()
+    {
+        leverActionObject = GetComponentInParent<ILeverActionable>();
+    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K) && canInteract)
+        if(Input.GetKeyDown(KeyCode.K) && canInteract && !isLeverAction)
         {
             StartCoroutine(OnInteract());
+            leverActionObject.StartLeverAction();
+            isLeverAction = true;
         }
     }
 
