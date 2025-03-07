@@ -23,7 +23,7 @@ public class Lever : MonoBehaviour, IInteractive
     {
         if(Input.GetKeyDown(KeyCode.K) && canInteract && !isLeverAction)
         {
-            StartCoroutine(OnInteract());
+            StartCoroutine(RotateLever(firstRot, lastRot));
             leverActionObject.StartLeverAction();
             isLeverAction = true;
         }
@@ -45,14 +45,14 @@ public class Lever : MonoBehaviour, IInteractive
         }
     }
 
-    private IEnumerator OnInteract()
+    private IEnumerator RotateLever(Vector3 startRot, Vector3 endRot)
     {
         float elapsedTime = 0f;
         float duration = 1f;
 
         while (elapsedTime < duration)
         {
-            Vector3 currentRot = Vector3.Lerp(firstRot, lastRot, elapsedTime / duration);
+            Vector3 currentRot = Vector3.Lerp(startRot, endRot, elapsedTime / duration);
 
             leverHandle.localRotation = Quaternion.Euler(currentRot);
 
@@ -60,26 +60,12 @@ public class Lever : MonoBehaviour, IInteractive
             yield return null;
         }
 
-        leverHandle.localRotation = Quaternion.Euler(lastRot);
+        leverHandle.localRotation = Quaternion.Euler(endRot);
     }
 
-    public IEnumerator InitInteractState()
+    public void InitLeverRotation()
     {
-        float elapsedTime = 0f;
-        float duration = 1f;
-
-        while (elapsedTime < duration)
-        {
-            Vector3 currentRot = Vector3.Lerp(lastRot, firstRot, elapsedTime / duration);
-
-            leverHandle.localRotation = Quaternion.Euler(currentRot);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        leverHandle.localRotation = Quaternion.Euler(firstRot);
-
+        StartCoroutine(RotateLever(lastRot, firstRot));
         isLeverAction = false;
     }
 

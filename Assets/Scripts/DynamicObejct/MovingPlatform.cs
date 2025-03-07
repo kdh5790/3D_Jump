@@ -30,18 +30,20 @@ public class MovingPlatform : MonoBehaviour, ILeverActionable
 
     public void EndLeverAction()
     {
-        StartCoroutine(lever.InitInteractState());
+        lever.InitLeverRotation();
     }
 
     private IEnumerator MoveToTargetPos()
     {
         Vector3 target = Vector3.Distance(transform.position, startPos) < Vector3.Distance(transform.position, endPos) ? endPos : startPos;
 
+        float moveSpeed = 5f;
+
         Player.Instance.transform.SetParent(transform);
 
         while (Vector3.Distance(transform.position, target) >= 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * 5f);
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed);
 
             yield return null;
         }
