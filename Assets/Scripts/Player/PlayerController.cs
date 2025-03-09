@@ -224,20 +224,26 @@ public class PlayerController : MonoBehaviour
         rigid.useGravity = false;
         isHanging = true;
         anim.SetBool("IsHanging", isHanging);
-StartCoroutine(CanHangClimbCheck());
+        StartCoroutine(CanHangClimbCheck());
     }
 
+    // 벽타기 가능여부 체크
     private IEnumerator CanHangCheck()
     {
         float distance = 0.7f;
 
         while (!IsGrounded())
         {
+            // 디버그용 Ray
             Debug.DrawRay(hangRayPivot.transform.position, transform.forward, Color.red, distance);
+
+            // 매달릴 수 있는 벽이 감지됐다면
             if (Physics.Raycast(hangRayPivot.transform.position, transform.forward, distance, hangLayer))
             {
                 canHang = true;
             }
+
+            // 벽에 탄 상태에서 현재 타고있는 벽을 벗어난 경우
             else if (Physics.Raycast(hangRayPivot.transform.position, transform.forward, distance, hangLayer) == false && isHanging)
             {
                 canHang = false;
@@ -253,6 +259,7 @@ StartCoroutine(CanHangClimbCheck());
         canHangCheckCoroutine = null;
     }
 
+    // 등반 가능 여부 체크
     private IEnumerator CanHangClimbCheck()
     {
         float waitTime = 0.1f;
