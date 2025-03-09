@@ -9,7 +9,14 @@ public class RaycastTrap : MonoBehaviour
     [SerializeField] private GameObject trapObj;
     [SerializeField] private GameObject trapTarget;
 
+    private BoxCollider boxCollider;
     private bool isActive;
+
+    private void Start()
+    {
+        boxCollider = GetComponent<BoxCollider>();
+        boxCollider.enabled = false;
+    }
 
     private void Update()
     {
@@ -22,12 +29,24 @@ public class RaycastTrap : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Player") && collision.transform.TryGetComponent(out Rigidbody rigid))
+        {
+            rigid.AddForce(-collision.transform.forward * 120f, ForceMode.VelocityChange);
+        }
+    }
+
     private IEnumerator TrapActive()
     {
         float duration = 0.5f;
         float elapsedTime = 0f;
 
         Vector3 startPosition = trapObj.transform.position;
+
+        yield return new WaitForSeconds(0.2f);
+
+        boxCollider.enabled = true;
 
         while (elapsedTime < duration)
         {
@@ -36,6 +55,7 @@ public class RaycastTrap : MonoBehaviour
             yield return null;
         }
 
+        boxCollider.enabled = false;
         elapsedTime = 0f;
         duration = 1f;
 

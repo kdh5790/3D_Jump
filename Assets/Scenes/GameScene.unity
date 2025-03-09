@@ -1041,7 +1041,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331451052}
-  - component: {fileID: 331451053}
   m_Layer: 0
   m_Name: RayTrap
   m_TagString: Untagged
@@ -1067,21 +1066,6 @@ Transform:
   - {fileID: 1603561984}
   m_Father: {fileID: 1809842903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &331451053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331451051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fdfd38387dcfc643b01951c76bcbfe5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayPivot: {fileID: 896681380}
-  trapObj: {fileID: 5473368626075162263}
-  trapTarget: {fileID: 1603561983}
 --- !u!1 &343974602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,7 +3195,7 @@ Transform:
   m_GameObject: {fileID: 1010360738}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.26, y: 25.880001, z: 50.26}
+  m_LocalPosition: {x: -1.24, y: 31.7, z: 51.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12510,6 +12494,8 @@ GameObject:
   - component: {fileID: 7053387819556738949}
   - component: {fileID: 2544357551750696993}
   - component: {fileID: 8921225991908767061}
+  - component: {fileID: 8921225991908767062}
+  - component: {fileID: 8921225991908767063}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -15794,6 +15780,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8921225991908767062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473368626075162263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdfd38387dcfc643b01951c76bcbfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayPivot: {fileID: 896681380}
+  trapObj: {fileID: 5473368626075162263}
+  trapTarget: {fileID: 1603561983}
+--- !u!65 &8921225991908767063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473368626075162263}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.987726, y: 1.987726, z: 1.7208384}
+  m_Center: {x: 0.0020037591, y: -0.003005594, z: -0.3660267}
 --- !u!4 &8946718175375157731
 Transform:
   m_ObjectHideFlags: 0
