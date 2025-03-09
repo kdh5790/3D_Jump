@@ -94,8 +94,5 @@ public class JumpPad : MonoBehaviour, IInteractive
         transform.localScale = targetScale;
     }
 
-    public ObjectInfo GetObjectInfo()
-    {
-        return info;
-    }
+    public ObjectInfo GetObjectInfo() => info;
 }

@@ -6,10 +6,7 @@ public class Item : MonoBehaviour, IInteractive
     public ObjectInfo objectInfo;
     private bool canObtain;
 
-    public ObjectInfo GetObjectInfo()
-    {
-        return objectInfo;
-    }
+    public ObjectInfo GetObjectInfo() => objectInfo;
 
     protected virtual void Update()
     {

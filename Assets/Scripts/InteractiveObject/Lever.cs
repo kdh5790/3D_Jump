@@ -20,7 +20,7 @@ public class Lever : MonoBehaviour, IInteractive
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K) && canInteract && !isLeverAction)
+        if(Input.GetKeyDown(KeyCode.F) && canInteract && !isLeverAction)
         {
             StartCoroutine(RotateLever(firstRot, lastRot));
             leverActionObject.StartLeverAction();
@@ -68,8 +68,5 @@ public class Lever : MonoBehaviour, IInteractive
         isLeverAction = false;
     }
 
-    public ObjectInfo GetObjectInfo()
-    {
-        return info;
-    }
+    public ObjectInfo GetObjectInfo() => info;
 }
