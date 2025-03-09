@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RaycastTrap : MonoBehaviour
@@ -20,9 +21,7 @@ public class RaycastTrap : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(rayPivot.position, transform.forward * 15f, Color.red);
-
-        if(!isActive && Physics.Raycast(rayPivot.position, transform.forward * 15f, out RaycastHit hitInfo))
+        if(Vector3.Distance(Player.Instance.transform.position, rayPivot.position) < 10f && !isActive && Physics.Raycast(rayPivot.position, transform.forward * 15f, out RaycastHit hitInfo))
         {
             isActive = true;
             StartCoroutine(TrapActive());
