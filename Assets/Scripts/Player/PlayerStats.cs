@@ -95,12 +95,13 @@ public class PlayerStats : MonoBehaviour
         if(isInvicibility) return;
 
         currentHealth = (int)MathF.Max(0, currentHealth - damage);
+        healthUIUpdateAction((float)currentHealth / (float)maxHealth);
     }
 
     public void HealHealth(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        healthUIUpdateAction(currentHealth / maxHealth);
+        healthUIUpdateAction((float)currentHealth / (float)maxHealth);
     }
 
     public void HealStamina(int amount)

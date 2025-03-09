@@ -31,9 +31,10 @@ public class RaycastTrap : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Player") && collision.transform.TryGetComponent(out Rigidbody rigid))
+        if (collision.transform.CompareTag("Player") && collision.transform.TryGetComponent(out PlayerStats stats))
         {
-            rigid.AddForce(-collision.transform.forward * 120f, ForceMode.VelocityChange);
+            collision.rigidbody.AddForce(-collision.transform.forward * 120f, ForceMode.VelocityChange);
+            stats.OnDamaged(50);
         }
     }
 
