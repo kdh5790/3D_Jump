@@ -16,4 +16,4 @@ MonoBehaviour:
   Health: 120
   Stamina: 110
   Speed: 3
-  JumpPower: 7
+  JumpPower: 8

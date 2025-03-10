@@ -41,6 +41,8 @@ public class CostumeBox : MonoBehaviour, IInteractive
                 StopCoroutine(boxCoroutine);
 
             boxCoroutine = StartCoroutine(InteractiveBox(false));
+
+            UIManager.Instance.costumeUI.CloseUI();
         }
     }
 

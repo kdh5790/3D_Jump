@@ -129,4 +129,13 @@ public class PlayerStats : MonoBehaviour
 
         isInvicibility = false;
     }
+
+    public void SetEquipmentStatus(int equipHealth, float equipStamina)
+    {
+        maxHealth = equipHealth;
+        maxStamina = equipStamina;
+
+        staminaUIUpdateAction(currentStamina / maxStamina);
+        healthUIUpdateAction((float)currentHealth / (float)maxHealth);
+    }
 }

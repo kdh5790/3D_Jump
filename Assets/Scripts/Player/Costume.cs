@@ -16,6 +16,11 @@ public class Costume : MonoBehaviour
 
     private CostumeInfo currentCostume;
 
+    private void Start()
+    {
+        StartCoroutine(InitCostume());
+    }
+
     public List<CostumeInfo> GetCostumeInfo()
     {
         List<CostumeInfo> costumeInfos = new List<CostumeInfo>();
@@ -39,5 +44,17 @@ public class Costume : MonoBehaviour
         GameObject costume = costumeList.Find(x => x.costumeInfo == info).costumeObj;
         if(costume != null)
             costume.SetActive(true);
+
+        Player.Instance.controller.equipmentSpeed = info.Speed;
+        Player.Instance.controller.jumpPower = info.JumpPower * 10;
+        Player.Instance.stats.SetEquipmentStatus(info.Health, info.Stamina);
+
+        currentCostume = info;
+    }
+
+    private IEnumerator InitCostume()
+    {
+        yield return new WaitForSeconds(0.3f);
+        ChangeCostume(costumeList[0].costumeInfo);
     }
 }

@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
     public float moveSpeed = 3f;
+    public float equipmentSpeed = 0f;
     public float increasedSpeed = 0f;
-    private float jumpPower = 80f;
+    public float jumpPower = 80f;
     private Vector2 movementInput;
     public LayerMask groundLayerMask;
 
@@ -116,13 +117,13 @@ public class PlayerController : MonoBehaviour
             movementInput = context.ReadValue<Vector2>();
 
             if (movementInput.y == 0 && (movementInput.x > 0f || movementInput.x < 0f)) // 좌우 이동
-                moveSpeed = 3f + increasedSpeed;
+                moveSpeed = increasedSpeed + equipmentSpeed;
 
             else if (movementInput.y < 0) // 뒤로 이동
-                moveSpeed = 4f + increasedSpeed;
+                moveSpeed = increasedSpeed + equipmentSpeed;
 
             else // 앞으로 이동
-                moveSpeed = 5f + increasedSpeed;
+                moveSpeed = increasedSpeed + equipmentSpeed;
 
             if (isSprint)
                 moveSpeed += 5f;
