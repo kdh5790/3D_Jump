@@ -23,7 +23,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private float currentStamina;
     public float CurrentStamina { get { return currentStamina; } }
 
-    PlayerController playerContoller;
+    private PlayerController playerContoller;
+    private SkinnedMeshRenderer[] meshRenderers;
 
     public Action<float> healthUIUpdateAction;
     public Action<float> staminaUIUpdateAction;
@@ -33,6 +34,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
         currentStamina = maxStamina;
         playerContoller = Player.Instance.controller;
+        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     void Update()
@@ -101,6 +103,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         currentHealth = (int)MathF.Max(0, currentHealth - damage);
         healthUIUpdateAction((float)currentHealth / (float)maxHealth);
 
+        StartCoroutine(DamageFlash());
         ApplyInvicibility(0.5f);
     }
 
@@ -126,6 +129,28 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public void ApplyInvicibility(float duration)
     {
         StartCoroutine(InvicibilityCoroutine(duration));
+    }
+
+    IEnumerator DamageFlash()
+    {
+        Color[] colors = new Color[meshRenderers.Length];
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            colors[i] = meshRenderers[i].material.color;
+        }
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            meshRenderers[i].material.color = new Color(1, 0.3f, 0.3f);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            meshRenderers[i].material.color = colors[i];
+        }
     }
 
     private IEnumerator InvicibilityCoroutine(float duration)
