@@ -5,8 +5,8 @@ public class Lever : MonoBehaviour, IInteractive
 {
     [SerializeField] private Transform leverHandle;
     [SerializeField] private ObjectInfo info;
-    
-    private ILeverActionable leverActionObject;
+
+    private ILeverActionable[] leverActionObject;
     private Vector3 firstRot = new Vector3(-40f, 0, 0);
     private Vector3 lastRot = new Vector3(90f, 0, 0);
 
@@ -15,22 +15,32 @@ public class Lever : MonoBehaviour, IInteractive
 
     private void Start()
     {
-        leverActionObject = GetComponentInParent<ILeverActionable>();
+        leverActionObject = GetComponentsInParent<ILeverActionable>();
+
+        if(leverActionObject.Length == 0)
+            leverActionObject = GetComponentsInChildren<ILeverActionable>();
+
+        if (leverActionObject.Length == 0)
+            Debug.LogError("레버와 상호작용 할 오브젝트를 찾지 못했습니다. 설정을 확인해주세요.");
+
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F) && canInteract && !isLeverAction)
+        if (Input.GetKeyDown(KeyCode.F) && canInteract && !isLeverAction)
         {
             StartCoroutine(RotateLever(firstRot, lastRot));
-            leverActionObject.StartLeverAction();
+
+            foreach (var lever in leverActionObject)
+                lever.StartLeverAction();
+
             isLeverAction = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             canInteract = true;
         }
