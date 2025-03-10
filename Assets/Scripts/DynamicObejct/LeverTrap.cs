@@ -20,7 +20,6 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
     public void EndLeverAction()
     {
         lever.InitLeverRotation();
-        
     }
 
     public void StartLeverAction()
@@ -60,5 +59,22 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
         boxCollider.enabled = false;
 
         EndLeverAction();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("Player") || other.CompareTag("Monster"))
+        {
+            IDamageable damageable = other.GetComponent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.OnDamaged(20);
+            }
+            else
+            {
+                Debug.LogError("IDamageable 인터페이스를 찾지 못했습니다.");
+            }
+        }
     }
 }
