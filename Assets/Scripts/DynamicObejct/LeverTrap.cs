@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LeverTrap : MonoBehaviour, ILeverActionable
 {
@@ -9,12 +11,17 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
     public Lever Lever => lever;
 
     private BoxCollider boxCollider;
+    private NavMeshObstacle navMeshObstacle;
 
 
     private void Start()
     {
+        navMeshObstacle = GetComponent<NavMeshObstacle>();
         boxCollider = GetComponent<BoxCollider>();
+
         boxCollider.enabled = false;
+        navMeshObstacle.carving = false;
+        navMeshObstacle.enabled = false;
     }
 
     public void EndLeverAction()
@@ -35,6 +42,8 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
         float duration = 0.5f;
         float elapsedTime = 0f;
 
+        navMeshObstacle.enabled = true;
+        navMeshObstacle.carving = true;
 
         while (elapsedTime < duration)
         {
@@ -48,6 +57,10 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
 
         elapsedTime = 0f;
 
+        boxCollider.enabled = false;
+        navMeshObstacle.carving = false;
+        navMeshObstacle.enabled = false;
+
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -56,7 +69,6 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
             yield return null;
         }
 
-        boxCollider.enabled = false;
 
         EndLeverAction();
     }

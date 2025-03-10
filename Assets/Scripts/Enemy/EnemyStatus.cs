@@ -9,6 +9,7 @@ public class EnemyStatus : MonoBehaviour, IDamageable
     private bool isInvicibility = false;
     private bool isDie = false;
 
+    private EnemyAI enemyAi;
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
 
@@ -16,6 +17,7 @@ public class EnemyStatus : MonoBehaviour, IDamageable
     {
         animator = GetComponent<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        enemyAi = GetComponent<EnemyAI>();
     }
 
     public void OnDamaged(int damage)

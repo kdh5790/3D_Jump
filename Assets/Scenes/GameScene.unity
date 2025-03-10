@@ -274,7 +274,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &43160033
 Transform:
@@ -1680,7 +1680,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &274373090
 Transform:
@@ -3496,7 +3496,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &435860716
 Transform:
@@ -4174,7 +4174,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &587381825
 Transform:
@@ -4739,12 +4739,13 @@ GameObject:
   - component: {fileID: 625297058}
   - component: {fileID: 625297057}
   - component: {fileID: 625297060}
+  - component: {fileID: 625297061}
   m_Layer: 0
   m_Name: LeverTrap (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &625297056
 Transform:
@@ -4781,7 +4782,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &625297058
 MeshRenderer:
@@ -4850,6 +4851,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 1648640073}
   lever: {fileID: 1760946195}
+--- !u!208 &625297061
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625297055}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &631446526
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,12 +4997,13 @@ GameObject:
   - component: {fileID: 646758863}
   - component: {fileID: 646758862}
   - component: {fileID: 646758865}
+  - component: {fileID: 646758866}
   m_Layer: 0
   m_Name: LeverTrap (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &646758861
 Transform:
@@ -5022,7 +5040,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &646758863
 MeshRenderer:
@@ -5091,6 +5109,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 1660898510}
   lever: {fileID: 1760946195}
+--- !u!208 &646758866
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646758860}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!64 &666347606
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5743,12 +5777,13 @@ GameObject:
   - component: {fileID: 754743044}
   - component: {fileID: 754743043}
   - component: {fileID: 754743046}
+  - component: {fileID: 754743047}
   m_Layer: 0
   m_Name: LeverTrap (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &754743042
 Transform:
@@ -5785,7 +5820,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &754743044
 MeshRenderer:
@@ -5854,6 +5889,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 587381825}
   lever: {fileID: 1760946195}
+--- !u!208 &754743047
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754743041}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &768685981
 GameObject:
   m_ObjectHideFlags: 0
@@ -9011,6 +9062,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130710370}
   m_CullTransparentMesh: 1
+--- !u!1 &1161172520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161172522}
+  - component: {fileID: 1161172521}
+  m_Layer: 0
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1161172521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161172520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
+--- !u!4 &1161172522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161172520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1163936963
 GameObject:
   m_ObjectHideFlags: 0
@@ -9024,12 +9138,13 @@ GameObject:
   - component: {fileID: 1163936966}
   - component: {fileID: 1163936965}
   - component: {fileID: 1163936968}
+  - component: {fileID: 1163936969}
   m_Layer: 0
   m_Name: LeverTrap (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1163936964
 Transform:
@@ -9066,7 +9181,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &1163936966
 MeshRenderer:
@@ -9135,6 +9250,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 43160033}
   lever: {fileID: 1760946195}
+--- !u!208 &1163936969
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163936963}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &1169041207
 GameObject:
   m_ObjectHideFlags: 0
@@ -11647,12 +11778,13 @@ GameObject:
   - component: {fileID: 1517745612}
   - component: {fileID: 1517745611}
   - component: {fileID: 1517745614}
+  - component: {fileID: 1517745615}
   m_Layer: 0
   m_Name: LeverTrap (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1517745610
 Transform:
@@ -11689,7 +11821,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &1517745612
 MeshRenderer:
@@ -11758,6 +11890,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 1731685947}
   lever: {fileID: 1760946195}
+--- !u!208 &1517745615
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517745609}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &1519203379
 GameObject:
   m_ObjectHideFlags: 0
@@ -12435,12 +12583,13 @@ GameObject:
   - component: {fileID: 1599185047}
   - component: {fileID: 1599185046}
   - component: {fileID: 1599185049}
+  - component: {fileID: 1599185050}
   m_Layer: 0
   m_Name: LeverTrap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1599185045
 Transform:
@@ -12477,7 +12626,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &1599185047
 MeshRenderer:
@@ -12546,6 +12695,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 274373090}
   lever: {fileID: 1760946195}
+--- !u!208 &1599185050
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599185044}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &1603561983
 GameObject:
   m_ObjectHideFlags: 0
@@ -12800,7 +12965,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1648640073
 Transform:
@@ -12883,7 +13048,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1660898510
 Transform:
@@ -13097,12 +13262,13 @@ GameObject:
   - component: {fileID: 1669654139}
   - component: {fileID: 1669654138}
   - component: {fileID: 1669654141}
+  - component: {fileID: 1669654142}
   m_Layer: 0
   m_Name: LeverTrap (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1669654137
 Transform:
@@ -13139,7 +13305,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &1669654139
 MeshRenderer:
@@ -13208,6 +13374,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 1767170865}
   lever: {fileID: 1760946195}
+--- !u!208 &1669654142
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669654136}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &1676670595
 GameObject:
   m_ObjectHideFlags: 0
@@ -13663,7 +13845,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1731685947
 Transform:
@@ -14041,7 +14223,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1767170865
 Transform:
@@ -15383,12 +15565,13 @@ GameObject:
   - component: {fileID: 1959772835}
   - component: {fileID: 1959772834}
   - component: {fileID: 1959772837}
+  - component: {fileID: 1959772838}
   m_Layer: 0
   m_Name: LeverTrap (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1959772833
 Transform:
@@ -15425,7 +15608,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!23 &1959772835
 MeshRenderer:
@@ -15494,6 +15677,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 435860716}
   lever: {fileID: 1760946195}
+--- !u!208 &1959772838
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959772832}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!1 &1999270037
 GameObject:
   m_ObjectHideFlags: 0
@@ -22902,7 +23101,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &3580132838486687938
 GameObject:
@@ -24587,8 +24786,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5685910823786660623}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.445942, y: 42.311543, z: 54.002644}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -56.29, y: 42.311543, z: 54.002644}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24600,7 +24799,7 @@ Transform:
   - {fileID: 9204147261974024737}
   - {fileID: 421638824080878212}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &5053331433351280994
 Transform:
   m_ObjectHideFlags: 0
@@ -25589,12 +25788,13 @@ GameObject:
   - component: {fileID: 3820770791517366811}
   - component: {fileID: 5826521281494340220}
   - component: {fileID: 5826521281494340221}
+  - component: {fileID: 5826521281494340222}
   m_Layer: 0
   m_Name: LeverTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &5826521281494340220
 BoxCollider:
@@ -25615,7 +25815,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9846356, y: 0.7023699, z: 1.9257758}
+  m_Size: {x: 1.2, y: 0.7023699, z: 1.2}
   m_Center: {x: -0.0040296316, y: 0.3619727, z: 0.009179175}
 --- !u!114 &5826521281494340221
 MonoBehaviour:
@@ -25631,6 +25831,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTransform: {fileID: 8897568014354410176}
   lever: {fileID: 1760946195}
+--- !u!208 &5826521281494340222
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5826521281494340219}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.071, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.004, y: 0.082, z: 0.009000001}
+  m_TimeToStationary: 0.5
 --- !u!4 &5831234535417631683
 Transform:
   m_ObjectHideFlags: 0
@@ -31190,3 +31406,4 @@ SceneRoots:
   - {fileID: 1597289556}
   - {fileID: 1528391574}
   - {fileID: 315802589}
+  - {fileID: 1161172522}
