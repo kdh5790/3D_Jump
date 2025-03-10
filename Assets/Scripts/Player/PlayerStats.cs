@@ -135,6 +135,12 @@ public class PlayerStats : MonoBehaviour
         maxHealth = equipHealth;
         maxStamina = equipStamina;
 
+        if(currentHealth >= maxHealth)
+            currentHealth = maxHealth;
+
+        if(currentStamina >=maxStamina)
+            currentStamina = maxStamina;
+
         staminaUIUpdateAction(currentStamina / maxStamina);
         healthUIUpdateAction((float)currentHealth / (float)maxHealth);
     }

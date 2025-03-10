@@ -10,6 +10,7 @@ public class JumpPad : MonoBehaviour, IInteractive
 {
     Coroutine rayCheckCorountine;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private bool canJumpMove; // 점프대를 이용하여 점프 중 이동 가능한지 
 
     private Player player;
     private bool isScaling;
@@ -19,8 +20,16 @@ public class JumpPad : MonoBehaviour, IInteractive
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && canJump && player != null)
-            player.GetComponent<Rigidbody>().AddForce(Vector2.up * 200f, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && player != null)
+        {
+            player.controller.canMove = canJumpMove ? true : false;
+            Vector3 power = transform.up.normalized * 200f;
+            Debug.Log(power);
+            player.GetComponent<Rigidbody>().AddForce(transform.up * 200f, ForceMode.Impulse);
+
+            if (!canJumpMove)
+                StartCoroutine(Player.Instance.controller.JumpPadGroundedCheck());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,7 +56,7 @@ public class JumpPad : MonoBehaviour, IInteractive
         while (true)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.up, out hit, 3f, playerLayer))
+            if (Physics.Raycast(transform.position, transform.up, out hit, 3f, playerLayer))
             {
                 if (hit.transform.TryGetComponent(out Player _player))
                 {
@@ -95,4 +104,11 @@ public class JumpPad : MonoBehaviour, IInteractive
     }
 
     public ObjectInfo GetObjectInfo() => info;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 power = transform.up.normalized * 25f;
+        Gizmos.DrawLine(transform.position, transform.position + power);
+    }
 }

@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (canMove)
+            Move();
     }
 
     private void LateUpdate()
@@ -203,6 +204,22 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
+
+    public IEnumerator JumpPadGroundedCheck()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        while (true)
+        {
+            if (IsGrounded())
+            {
+                canMove = true;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
 
     public void ApplySpeedBoost(float duration)
     {
