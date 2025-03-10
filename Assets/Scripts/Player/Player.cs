@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     public PlayerController controller;
     public PlayerStats stats;
+    public Costume costume;
 
     void Awake()
     {
@@ -15,5 +16,6 @@ public class Player : MonoBehaviour
 
         controller = GetComponent<PlayerController>();
         stats = GetComponent<PlayerStats>();
+        costume = GetComponent<Costume>();
     }
 }

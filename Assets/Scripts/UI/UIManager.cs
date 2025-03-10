@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public StatusUI statusUI;
     public DescriptionUI descriptionUI;
     public InventoryUI inventoryUI;
+    public CostumeUI costumeUI;
 
     private void Awake()
     {
@@ -17,5 +18,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         inventoryUI.Init();
+        costumeUI.Init();
     }
 }
