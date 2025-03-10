@@ -63,7 +63,7 @@ public class LeverTrap : MonoBehaviour, ILeverActionable
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player") || other.CompareTag("Monster"))
+        if(other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
 
