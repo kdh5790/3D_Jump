@@ -1,11 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CostumeUI : BaseOpenCloseUI
 {
+    [SerializeField] private Button closeButton;
+
+    private List<CostumeInfo> costumeInfos = new List<CostumeInfo>();
+    private CostumeSlot[] costumeSlots;
+
     public override void Init()
     {
-        throw new System.NotImplementedException();
+        closeButton.onClick.AddListener(CloseUI);
+
+        costumeSlots = GetComponentsInChildren<CostumeSlot>();
+        costumeInfos = Player.Instance.costume.GetCostumeInfo();
+
+        SetSlots();
+    }
+
+    private void SetSlots()
+    {
+        if (costumeSlots == null) return;
+
+        for (int i = 0; i < costumeSlots.Length; i++)
+        {
+            costumeSlots[i].SetText(costumeInfos[i]);
+        }
     }
 }

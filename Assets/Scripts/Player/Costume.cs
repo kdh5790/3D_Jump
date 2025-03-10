@@ -14,15 +14,30 @@ public class Costume : MonoBehaviour
 {
     [SerializeField] private List<CostumeWrapper> costumeList = new List<CostumeWrapper>();
 
-    // Start is called before the first frame update
-    void Start()
+    private CostumeInfo currentCostume;
+
+    public List<CostumeInfo> GetCostumeInfo()
     {
-        
+        List<CostumeInfo> costumeInfos = new List<CostumeInfo>();
+
+        foreach (var costume in costumeList)
+        {
+            costumeInfos.Add(costume.costumeInfo);
+        }
+
+        return costumeInfos;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeCostume(CostumeInfo info)
     {
-        
+        foreach (var _costume in costumeList)
+        {
+            if (_costume.costumeObj != null)
+                _costume.costumeObj.SetActive(false);
+        }
+
+        GameObject costume = costumeList.Find(x => x.costumeInfo == info).costumeObj;
+        if(costume != null)
+            costume.SetActive(true);
     }
 }

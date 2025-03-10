@@ -17,6 +17,7 @@ public class CostumeBox : MonoBehaviour, IInteractive
     {
         if (canActive && Input.GetKeyDown(KeyCode.F) && boxCoroutine == null)
         {
+            UIManager.Instance.costumeUI.OpenUI();
             boxCoroutine = StartCoroutine(InteractiveBox(true));
         }
     }
