@@ -2,7 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public interface IDamageable
+{
+    void OnDamaged(int damage);
+}
+
+public class PlayerStats : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
@@ -91,10 +96,12 @@ public class PlayerStats : MonoBehaviour
 
     public void OnDamaged(int damage)
     {
-        if(isInvicibility) return;
+        if (isInvicibility) return;
 
         currentHealth = (int)MathF.Max(0, currentHealth - damage);
         healthUIUpdateAction((float)currentHealth / (float)maxHealth);
+
+        ApplyInvicibility(0.5f);
     }
 
     public void HealHealth(int amount)
@@ -135,10 +142,10 @@ public class PlayerStats : MonoBehaviour
         maxHealth = equipHealth;
         maxStamina = equipStamina;
 
-        if(currentHealth >= maxHealth)
+        if (currentHealth >= maxHealth)
             currentHealth = maxHealth;
 
-        if(currentStamina >=maxStamina)
+        if (currentStamina >= maxStamina)
             currentStamina = maxStamina;
 
         staminaUIUpdateAction(currentStamina / maxStamina);
