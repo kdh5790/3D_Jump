@@ -124,10 +124,10 @@ public class PlayerController : MonoBehaviour
 
             // 입력된 값에 따라 속도 변경
             if (movementInput.y == 0 && (movementInput.x > 0f || movementInput.x < 0f)) // 좌우 이동
-                moveSpeed = increasedSpeed + equipmentSpeed - 1f;
+                moveSpeed = increasedSpeed + equipmentSpeed;
 
             else if (movementInput.y < 0) // 뒤로 이동
-                moveSpeed = increasedSpeed + equipmentSpeed - 2f;
+                moveSpeed = increasedSpeed + equipmentSpeed;
 
             else // 앞으로 이동
                 moveSpeed = increasedSpeed + equipmentSpeed;

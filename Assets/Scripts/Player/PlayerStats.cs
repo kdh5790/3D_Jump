@@ -122,8 +122,28 @@ public class PlayerStats : MonoBehaviour, IDamageable
         currentHealth = (int)MathF.Max(0, currentHealth - damage);
         healthUIUpdateAction((float)currentHealth / (float)maxHealth);
 
+        if(currentHealth <= 0)
+        {
+            Die();
+            return;
+        }
+
         StartCoroutine(DamageFlash());
         ApplyInvicibility(0.5f);
+    }
+
+    // 플레이어 사망
+    public void Die()
+    {
+        isInvicibility = true;
+
+        Animator animator = GetComponent<Animator>();
+
+        animator.SetTrigger("Die");
+
+        Player.Instance.controller.Stop();
+        Player.Instance.controller.canMove = false;
+        Player.Instance.controller.canLook = false;
     }
 
     // 체력 회복
