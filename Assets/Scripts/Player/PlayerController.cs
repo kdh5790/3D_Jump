@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         moveState = MoveState.Idle;
         movementInput = Vector2.zero;
+        rigid.velocity = Vector3.zero;
         isSprint = false;
     }
 
