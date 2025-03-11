@@ -20,6 +20,7 @@ public class CostumeUI : BaseOpenCloseUI
         SetSlots();
     }
 
+    // 코스튬 슬롯 UI들 세팅
     private void SetSlots()
     {
         if (costumeSlots == null) return;

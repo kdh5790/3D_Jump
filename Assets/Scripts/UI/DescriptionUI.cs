@@ -14,6 +14,7 @@ public class DescriptionUI : MonoBehaviour
         interactionDescriptionText.text = string.Empty;
     }
 
+    // 우측 하단에 표시 될 오브젝트 정보 UI 텍스트 세팅
     public void SetInfoText(ObjectInfo _info = null)
     {
         if (_info != null)
@@ -28,6 +29,7 @@ public class DescriptionUI : MonoBehaviour
         }
     }
 
+    // 화면 상단에 표시될 상호작용 설명 UI 텍스트 세팅
     public void SetInteractionDescriptionText(string description)
     {
         interactionDescriptionText.text = description;

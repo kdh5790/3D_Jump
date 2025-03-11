@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class InventoryUI : BaseOpenCloseUI
 {
+    // 선택한 아이템 정보 텍스트, 이미지
     [SerializeField] private TextMeshProUGUI selectItemNameText;
     [SerializeField] private TextMeshProUGUI selectItemCountText;
     [SerializeField] private TextMeshProUGUI selectItemDescriptionText;
     [SerializeField] private Image selectItemImage;
+
     [SerializeField] private Button useButton;
 
     private List<InventorySlot> slots;
@@ -44,6 +46,7 @@ public class InventoryUI : BaseOpenCloseUI
         selectItemImage.color = new Color(1, 1, 1, 0);
     }
 
+    // 선택한 아이템에 맞게 UI 수정
     public void SetSelectItemInfoUI(InventorySlot slot)
     {
         item = slot.item;
@@ -55,6 +58,7 @@ public class InventoryUI : BaseOpenCloseUI
         index = slot.index;
     }
 
+    // 모든 슬롯들 세팅
     public void SetSlot()
     {
         int slotIndex = 0;
@@ -78,8 +82,11 @@ public class InventoryUI : BaseOpenCloseUI
         }
     }
 
+    // 아이템 획득 함수
     public void AddItem(ItemInfo _item)
     {
+        // 빈슬롯, 매개변수와 동일한 아이템이 존재하는지 확인 후 아이템 새로추가 혹은 카운트 증가
+
         for (int i = 0; i < slots.Count; i++)
         {
             if (slots[i].item == _item)
@@ -105,6 +112,7 @@ public class InventoryUI : BaseOpenCloseUI
         SetSlot();
     }
 
+    // 사용 버튼 클릭 시 실행
     public void OnClickUseButton()
     {
         if(item != null && ItemManager.Instance.UseItem(item))

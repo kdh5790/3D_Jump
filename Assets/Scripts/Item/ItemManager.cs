@@ -10,6 +10,7 @@ public class ItemManager : MonoBehaviour
             Instance = this;
     }
 
+    // 아이템 효과 적용 함수
     public bool UseItem(ItemInfo info)
     {
         switch (info.PotionType)

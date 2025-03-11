@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractive
 {
-    public ItemInfo itemInfo;
-    public ObjectInfo objectInfo;
-    private bool canObtain;
+    public ItemInfo itemInfo; // 아이템 정보 (Scriptable Object)
+    public ObjectInfo objectInfo; // 오브젝트 정보 (Scriptable Object)
+    private bool canObtain; // 획득 가능 여부
 
     public ObjectInfo GetObjectInfo() => objectInfo;
 
     protected virtual void Update()
     {
         if (!canObtain) return;
-
 
         if (Input.GetKeyDown(KeyCode.E))
         {

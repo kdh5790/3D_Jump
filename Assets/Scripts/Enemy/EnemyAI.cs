@@ -11,14 +11,14 @@ public enum AIState
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
 
-    private float playerDistance;
-    private float detectionRange = 20f;
-    private float attackRange = 3f;
-    private float attackCooldown = 2f;
+    private float playerDistance; // 플레이어와 거리
+    private float detectionRange = 20f; // 플레이어를 발견할 거리
+    private float attackRange = 3f; // 공격 사정거리
+    private float attackCooldown = 2f; // 공격 쿨타임
 
-    private bool canAttack = true;
+    private bool canAttack = true; // 공격 가능 여부
 
     private AIState state;
     private NavMeshAgent navMeshAgent;
@@ -36,9 +36,8 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        // 플레이어와 적의 거리 계산
         playerDistance = Vector3.Distance(transform.position, Player.Instance.transform.position);
-
-        Debug.Log(playerDistance);
 
         animator.SetBool("IsMove", state != AIState.Idle);
 
@@ -54,6 +53,7 @@ public class EnemyAI : MonoBehaviour
         else if (playerDistance < detectionRange)
         {
             SetState(AIState.Move);
+            // navmesh 경로를 플레이어로 지속해서 설정
             navMeshAgent.SetDestination(Player.Instance.transform.position);
         }
         else
@@ -70,6 +70,7 @@ public class EnemyAI : MonoBehaviour
 
         switch (state)
         {
+            // isStopped : navmesh 정지 여부
             case AIState.Idle:
                 navMeshAgent.isStopped = true;
                 break;
@@ -84,6 +85,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        // 공격 불가능 상태(쿨타임) 이라면 코루틴 중지
         if (!canAttack) yield break;
 
         canAttack = false;

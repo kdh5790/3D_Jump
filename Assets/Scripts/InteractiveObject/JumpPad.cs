@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+// 플레이어가 감지하여 설명을 띄워줄 오브젝트들에게 넣어줄 인터페이스
 public interface IInteractive
 {
     ObjectInfo GetObjectInfo();
@@ -13,8 +14,8 @@ public class JumpPad : MonoBehaviour, IInteractive
     [SerializeField] private bool canJumpMove; // 점프대를 이용하여 점프 중 이동 가능한지 
 
     private Player player;
-    private bool isScaling;
-    private bool canJump;
+    private bool isScaling; // 현재 스케일 조정 중인지 확인
+    private bool canJump; // 점프 가능 상태인지 확인
 
     public ObjectInfo info;
 
@@ -22,9 +23,13 @@ public class JumpPad : MonoBehaviour, IInteractive
     {
         if (Input.GetKeyDown(KeyCode.Space) && canJump && player != null)
         {
+            // 점프 중 이동 가능한 점프대인지 확인하여 플레이어 행동 제한
             player.controller.canMove = canJumpMove ? true : false;
+            
+            // 점프시킬 힘
             Vector3 power = transform.up.normalized * 200f;
-            Debug.Log(power);
+
+            // 플레이어를 점프대가 바라보고 있는 상태 기준 위로 힘을 가해줌
             player.GetComponent<Rigidbody>().AddForce(transform.up * 200f, ForceMode.Impulse);
 
             if (!canJumpMove)
@@ -32,6 +37,7 @@ public class JumpPad : MonoBehaviour, IInteractive
         }
     }
 
+    // 플레이어가 설정해둔 Trigger에 입장 했을 때만 Ray 검사
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -40,6 +46,7 @@ public class JumpPad : MonoBehaviour, IInteractive
         }
     }
 
+    // 플레이어가 Trigger에서 나갔다면 Ray 검사 중지
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -51,13 +58,17 @@ public class JumpPad : MonoBehaviour, IInteractive
         }
     }
 
+    // Ray 감지 코루틴
     public IEnumerator RayCheckCoroutine()
     {
         while (true)
         {
             RaycastHit hit;
+
+            // 점프대가 바라보는 방향 기준 위 방향으로 Ray 검사 실행
             if (Physics.Raycast(transform.position, transform.up, out hit, 3f, playerLayer))
             {
+                // 플레이어가 감지됐다면 점프 가능 상태로 변경
                 if (hit.transform.TryGetComponent(out Player _player))
                 {
                     player = _player;
@@ -82,6 +93,7 @@ public class JumpPad : MonoBehaviour, IInteractive
         }
     }
 
+    // 점프패드의 y값 크기 조절
     private IEnumerator JumpPadScaleChange(Vector3 targetScale)
     {
         isScaling = true;
@@ -105,6 +117,7 @@ public class JumpPad : MonoBehaviour, IInteractive
 
     public ObjectInfo GetObjectInfo() => info;
 
+    // 방향 확인 디버깅 함수
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

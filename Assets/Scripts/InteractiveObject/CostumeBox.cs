@@ -4,14 +4,12 @@ using UnityEngine;
 public class CostumeBox : MonoBehaviour, IInteractive
 {
     [SerializeField] private ObjectInfo info;
-    [SerializeField] private GameObject chestLid;
+    [SerializeField] private GameObject chestLid; // 상자 뚜껑 오브젝트
 
     private bool canActive;
     private Coroutine boxCoroutine;
 
     public ObjectInfo GetObjectInfo() => info;
-
-
 
     private void Update()
     {
@@ -46,6 +44,7 @@ public class CostumeBox : MonoBehaviour, IInteractive
         }
     }
 
+    // 박스 활성화 (true : 열림, false : 닫힘)
     private IEnumerator InteractiveBox(bool open)
     {
         float duration = 0.5f;
