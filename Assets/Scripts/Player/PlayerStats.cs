@@ -141,9 +141,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
         animator.SetTrigger("Die");
 
-        Player.Instance.controller.Stop();
-        Player.Instance.controller.canMove = false;
-        Player.Instance.controller.canLook = false;
+        UIManager.Instance.gameEndUI.OpenUI();
+        UIManager.Instance.gameEndUI.SetText("게임 오버...");
     }
 
     // 체력 회복

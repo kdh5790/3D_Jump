@@ -19,6 +19,11 @@ public class GameEndUI : MonoBehaviour
 
     public void OpenUI()
     {
+        Player.Instance.controller.Stop();
+        Player.Instance.controller.canMove = false;
+        Player.Instance.controller.canLook = false;
+        Cursor.lockState = CursorLockMode.None;
+
         gameObject.SetActive(true);
     }
 

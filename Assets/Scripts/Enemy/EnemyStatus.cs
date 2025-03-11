@@ -74,5 +74,8 @@ public class EnemyStatus : MonoBehaviour, IDamageable
 
         // 애니메이션이 충분히 재생되고 난 뒤에 파괴되도록 2초뒤 파괴
         Destroy(gameObject, 2f);
+
+        UIManager.Instance.gameEndUI.OpenUI();
+        UIManager.Instance.gameEndUI.SetText("클리어!");
     }
 }
