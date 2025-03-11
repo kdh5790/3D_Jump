@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public DescriptionUI descriptionUI;
     public InventoryUI inventoryUI;
     public CostumeUI costumeUI;
+    public GameEndUI gameEndUI;
 
     private void Awake()
     {

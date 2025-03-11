@@ -46,7 +46,7 @@ public class Lever : MonoBehaviour, IInteractive
     {
         if (other.CompareTag("Player"))
         {
-            UIManager.Instance.descriptionUI.SetInteractionDescriptionText("E키를 입력하여 레버를 작동 시킬 수 있습니다.");
+            UIManager.Instance.descriptionUI.SetInteractionDescriptionText("F키를 입력하여 레버를 작동 시킬 수 있습니다.");
             canInteract = true;
         }
     }

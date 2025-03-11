@@ -16,6 +16,7 @@ public class Item : MonoBehaviour, IInteractive
         {
             UIManager.Instance.inventoryUI.AddItem(itemInfo);
             UIManager.Instance.descriptionUI.SetInteractionDescriptionText(string.Empty);
+            Destroy(gameObject);
         }
     }
 
